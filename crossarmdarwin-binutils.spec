@@ -23,7 +23,10 @@ Source0:	odcctools-r280.tar.bz2
 URL:		http://developer.berlios.de/projects/iphone-binutils/
 BuildRequires:	bison
 BuildRequires:	flex
-ExcludeArch:	%{x8664}
+%ifarch %{x8664}
+# SILLY! there should had been %{target_base_arch} if any at all
+BuildRequires:	glibc-devel(athlon)
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		target		arm-apple-darwin
@@ -58,6 +61,10 @@ programów i bibliotek.
 install -d build/odcctools
 cd build/odcctools
 ../../odcctools/%configure \
+%ifarch %{x8664}
+	CFLAGS="%{rpmcflags} -m32" \
+	LDFLAGS="%{rpmldflags} -m32" \
+%endif
 	--prefix=%{arch} \
 	--libexecdir=%{arch} \
 	--target=%{target} \
