@@ -15,7 +15,7 @@
 Summary:	Cross ARM Apple Darwin development utilities - binutils
 Name:		crossarmdarwin-binutils
 Version:	0.152
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Development/Tools
 Source0:	odcctools-r280.tar.bz2
@@ -83,7 +83,7 @@ install -d $RPM_BUILD_ROOT%{_prefix}
 # prefix manpages
 for a in $RPM_BUILD_ROOT%{_mandir}/man?/*; do
 	n=${a##*/} s=${a##*.} d=${a%/*}
-	mv $a $d/%{target}-$n.$s
+	mv $a $d/%{target}-$n
 done
 
 %clean
