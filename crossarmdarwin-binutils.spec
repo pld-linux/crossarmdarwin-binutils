@@ -24,8 +24,6 @@ URL:		http://developer.berlios.de/projects/iphone-binutils/
 BuildRequires:	bison
 BuildRequires:	flex
 %ifarch %{x8664}
-# SILLY! there should had been %{target_base_arch} if any at all
-BuildRequires:	glibc-devel(athlon)
 BuildRequires:	gcc-multilib
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
