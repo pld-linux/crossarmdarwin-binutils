@@ -10,7 +10,7 @@
 # TODO
 # - name of this cross platform? crossarm-darwin? crossarm-darwin9?
 # - not built from binutils source, should we name package differently?
-# - On 64-bit architectures there are currently compilation and linking problems with structs; as a workaround, try the following:
+# - On 64-bit architectures there are currently compilation and linking problems with structs and typedefs; as a workaround, try the following:
 # - export CFLAGS="-m32"; export LDFLAGS="-m32"
 Summary:	Cross ARM Apple Darwin development utilities - binutils
 Name:		crossarmdarwin-binutils
@@ -26,6 +26,7 @@ BuildRequires:	flex
 %ifarch %{x8664}
 # SILLY! there should had been %{target_base_arch} if any at all
 BuildRequires:	glibc-devel(athlon)
+BuildRequires:	gcc-multilib
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
